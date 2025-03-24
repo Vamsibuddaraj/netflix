@@ -1,10 +1,11 @@
 import './App.css'
+import Body from './components/Body'
 
 function App() {
 
   return (
     <>
-      <p className='font-bold text-red-400 text-3xl'>Welcome to netflix</p>
+      <Body />
     </>
   )
 }
