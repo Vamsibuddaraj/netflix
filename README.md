@@ -1,6 +1,11 @@
 # Netflix
  - vite@latest
  - Configured TailwindCSS
+ - Header
+ - Routing
+ - Login Form
+ - Sign Up Form
+ - Form validation
 
 
 
