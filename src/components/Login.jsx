@@ -1,17 +1,18 @@
 import React, { useRef, useState } from 'react'
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../utils/firebase';
 import Header from './Header'
 import { checkValidData } from '../utils/validate'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addUser } from '../utils/userSlice';
 const Login = () => {
     const [isSignIn, setIsSignIn] = useState(true)
     const [errorMsge,setErrorMsge] = useState(null)
-    const user = useSelector(store=>store.user)
-    // const [authorized,setAuthorized] = useState(false)
-    console.log("user",user)
+    // const user = useSelector(store=>store.user)
+    const dispatch = useDispatch()
     const email = useRef()
     const password = useRef()
+    const name  = useRef()
     const handleButtonClick = () =>{
         //validate the form data
         const msge = checkValidData(email.current.value,password.current.value)
@@ -22,9 +23,17 @@ const Login = () => {
             .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
-                console.log(user)
-                // setAuthorized(user)
-                // navigate("/browse")
+                updateProfile(auth.currentUser, {
+                    displayName: name.current.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
+                  }).then(() => {
+                    // Profile updated!
+                    const {uid,displayName,email} = auth.currentUser;
+                    console.log("{uid,displayName,email}",displayName,user)
+                    dispatch(addUser({"uid":uid,"displayName":displayName,"email":email}))
+                    console.log("profile updated",name.current.value)
+                  }).catch((error) => {
+                    // An error occurred
+                  });
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -36,10 +45,7 @@ const Login = () => {
             signInWithEmailAndPassword(auth, email.current.value, password.current.value)
             .then((userCredential) => {
                 // Signed in 
-                const user = userCredential.user;
-                console.log(user)
-                // setAuthorized(user)
-                // navigate("/browser")
+                const user = userCredential.user;   
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -55,7 +61,6 @@ const Login = () => {
         password.current.value=null
         setErrorMsge(null)
     }
-    console.log("msge--",errorMsge)
 
 
   return (
@@ -66,7 +71,7 @@ const Login = () => {
         </div>
         <form onSubmit={(e)=>e.preventDefault()} className='absolute top-7 flex flex-col bg-black bg-opacity-80 w-1/4 mx-auto right-0 left-0 mt-50 text-white p-10 rounded-lg'>
             <h1 className='font-bold text-2xl'>{isSignIn?"Sign In":"Sign Up"}</h1>
-            {!isSignIn&&<input type='text' placeholder='Full Name' className='p-3 my-3 bg-gray-500'/>}
+            {!isSignIn&&<input ref={name} type='text' placeholder='Full Name' className='p-3 my-3 bg-gray-500'/>}
             <input ref={email} type='text' placeholder='Email Address' className='p-3 my-3 bg-gray-500'/>
             <input ref={password} type='password' placeholder='Password' className='p-3 my-3 bg-gray-500 '/>
             {errorMsge&&<p className='text-red-500'>{errorMsge}</p>}
