@@ -14,6 +14,8 @@
  - Update Profile
  - unsubscribed to the onAuthStateChanged callback
  - Register tmdb for movies list
+ - created custom hooks to update the redux store with movies data
+ - implementing GPT suggestions page 
  
 
 

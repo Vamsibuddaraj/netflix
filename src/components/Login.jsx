@@ -5,6 +5,7 @@ import Header from './Header'
 import { checkValidData } from '../utils/validate'
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { BG_LOGO } from '../utils/constants';
 const Login = () => {
     const [isSignIn, setIsSignIn] = useState(true)
     const [errorMsge,setErrorMsge] = useState(null)
@@ -65,7 +66,7 @@ const Login = () => {
     <div className='relative'>
         <Header />
         <div>
-            <img src='https://assets.nflxext.com/ffe/siteui/vlv3/f6e7f6df-6973-46ef-b98f-12560d2b3c69/web/IN-en-20250317-TRIFECTA-perspective_26f87873-6014-460d-a6fb-1d96d85ffe5f_medium.jpg' alt='background-logo'/>
+            <img src={BG_LOGO} alt='background-logo'/>
         </div>
         <form onSubmit={(e)=>e.preventDefault()} className='absolute top-7 flex flex-col bg-black bg-opacity-80 w-1/4 mx-auto right-0 left-0 mt-50 text-white p-10 rounded-lg'>
             <h1 className='font-bold text-2xl'>{isSignIn?"Sign In":"Sign Up"}</h1>

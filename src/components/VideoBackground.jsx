@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux'
 const VideoBackground = ({movieId}) => {   
   useGetMovieVideos(movieId)
   const youtubeKey  = useSelector(store=>store.movies?.movieTrailer?.key)
-  console.log("youtube key",youtubeKey)
   return (
     <div className='w-screen'>
       <iframe 
