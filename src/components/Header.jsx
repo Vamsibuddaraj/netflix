@@ -17,7 +17,7 @@ const Header = () => {
       });
   }
   return (
-    <div className='absolute flex w-12/12 justify-between bg-gradient-to-b from-black'>
+    <div className='absolute flex w-12/12 justify-between bg-gradient-to-b from-black z-50'>
       <div className='  py-1 px-3 '>
           <img className='w-40 h-30' src='https://images.ctfassets.net/y2ske730sjqp/6bhPChRFLRxc17sR8jgKbe/6fa1c6e6f37acdc97ff635cf16ba6fb3/Logos-Readability-Netflix-logo.png' alt='logo'/>
       </div>

@@ -9,6 +9,12 @@
  - firebase setup
  - Deploying the app
  - Create Sign up user account in firebase
+ - Created Redux store with userSlice
+ - Implemented Sign out
+ - Update Profile
+ - unsubscribed to the onAuthStateChanged callback
+ - Register tmdb for movies list
+ 
 
 
 

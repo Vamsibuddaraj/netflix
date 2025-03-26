@@ -28,9 +28,7 @@ const Login = () => {
                   }).then(() => {
                     // Profile updated!
                     const {uid,displayName,email} = auth.currentUser;
-                    console.log("{uid,displayName,email}",displayName,user)
                     dispatch(addUser({"uid":uid,"displayName":displayName,"email":email}))
-                    console.log("profile updated",name.current.value)
                   }).catch((error) => {
                     // An error occurred
                   });

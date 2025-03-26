@@ -13,11 +13,9 @@ const Body = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   useEffect(()=>{
-    console.log("into user update")
-      onAuthStateChanged(auth, (user) => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
           const {uid,displayName,email} = user;
-          console.log("{uid,displayName,email}",displayName,user)
           dispatch(addUser({"uid":uid,"displayName":displayName,"email":email}))
           navigate("/browse")
       } else {
@@ -26,6 +24,7 @@ const Body = () => {
           navigate("/")
       }
       });
+      return ()=>unsubscribe()
   },[])
   return (
     <Routes>
