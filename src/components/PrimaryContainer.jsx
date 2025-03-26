@@ -6,7 +6,7 @@ import VideoBackground from './VideoBackground'
 const PrimaryContainer = () => {
     const movies = useSelector(store=>store.movies.nowPlayingMovies)
     if(!movies) return
-    const {original_title,overview,id} = movies[6]
+    const {original_title,overview,id} = movies[1]
   return (
     <div className='relative'>
         <MovieTitle title = {original_title} overview={overview} />
