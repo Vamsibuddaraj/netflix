@@ -8,7 +8,7 @@ const Header = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const user = useSelector(store=>store.user)
-  const gptView = useSelector(store=>store.gptSuggestions)
+  const gptView = useSelector(store=>store.gptSuggestions.toggleView)
   const handleSignout = () => {
       signOut(auth).then(() => {
         // Sign-out successful.

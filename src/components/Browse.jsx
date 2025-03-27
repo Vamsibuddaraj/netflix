@@ -12,7 +12,7 @@ const Browse = () => {
   useNowPlayingMovies()
   usePopularMovies()
   useUpcomingMovies()
-  const gptView = useSelector(store=>store.gptSuggestions)
+  const gptView = useSelector(store=>store.gptSuggestions.toggleView)
   return (
     <div>
       <Header />
